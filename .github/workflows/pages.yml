@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 24
         env:
-          SITE_URL: https://${{ github.repository_owner }}.github.io
+          SITE_URL: https://drakelabs.org
           BASE_PATH: /
   deploy:
     needs: build

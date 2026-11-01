@@ -2,7 +2,7 @@
 
 Zachary Drake’s portfolio: infrastructure, projects, practical lessons, and professional experience in unified communications and contact centers.
 
-- Website: https://drakelabs.github.io/
+- Website: https://drakelabs.org/
 - Service status: https://status.drakelabs.org/
 - Organization: https://github.com/DrakeLabs
 
@@ -38,7 +38,7 @@ Build output is in `dist/`; it is not committed. Only this website directory bel
 
 The static Astro website runs independently of the home lab. It contains no server credentials, monitoring tokens, or live-service controls. Its status links go to the independently hosted Better Stack page; availability results are not duplicated in the static build.
 
-The organization-site repository uses `SITE_URL=https://drakelabs.github.io` and `BASE_PATH=/`. Set `SITE_URL` when adopting a custom domain. DNS and custom-domain configuration are separate from deploying the website.
+The organization-site repository uses `SITE_URL=https://drakelabs.org` and `BASE_PATH=/`. The custom domain is drakelabs.org; its DNS records are managed separately in Cloudflare.
 
 See [deployment instructions](docs/DEPLOYMENT.md) and [status setup](docs/STATUS.md).
 
