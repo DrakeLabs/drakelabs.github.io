@@ -1,0 +1,50 @@
+---
+const preview = import.meta.env.DEV;
+---
+<script is:inline define:vars={{ preview }}>
+  (() => {
+    const root = document.documentElement;
+    const key = 'drakelabs-seasonal-accents';
+    let enabled = true;
+    try { enabled = localStorage.getItem(key) !== 'off'; } catch {}
+    const update = () => {
+      // Use the visitor's local date; never require a deploy for the season to change.
+      const date = new Date();
+      const override = preview ? new URLSearchParams(location.search).get('season') : null;
+      const month = date.getMonth();
+      const day = date.getDate();
+      let season = 'default';
+      if (month === 9 && day >= 24) season = 'halloween';
+      if (month === 11 && day >= 18 && day <= 26) season = 'christmas';
+      if ((month === 11 && day >= 27) || (month === 0 && day <= 8)) season = 'new-year';
+      if (['default', 'halloween', 'christmas', 'new-year'].includes(override)) season = override;
+      // Preserve the status page's meaning-bearing colors.
+      const statusPage = /\/status\/?$/.test(location.pathname);
+      root.dataset.season = enabled && !statusPage ? season : 'default';
+      const control = document.getElementById('seasonal-accents');
+      if (control) control.checked = enabled;
+    };
+    update();
+    document.addEventListener('DOMContentLoaded', () => {
+      const control = document.getElementById('seasonal-accents');
+      if (control) {
+        control.closest('label').hidden = false;
+        control.addEventListener('change', () => {
+          enabled = control.checked;
+          try { localStorage.setItem(key, enabled ? 'on' : 'off'); } catch {}
+          update();
+        });
+      }
+      update();
+    });
+    window.addEventListener('storage', (event) => {
+      if (event.key === key || event.key === null) {
+        enabled = event.newValue !== 'off';
+        update();
+      }
+    });
+    window.addEventListener('pageshow', update);
+    document.addEventListener('visibilitychange', update);
+    setInterval(update, 60000);
+  })();
+</script>

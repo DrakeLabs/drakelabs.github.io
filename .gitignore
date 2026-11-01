@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+.DS_Store
+
+# Private editorial provenance and review records
+docs/CONTENT-SOURCES.md
+docs/SITE-REVIEW.md
+docs/LAUNCH-REVIEW.md
+
+# Machine-specific development instructions
+docs/LOCAL-RUNTIME.md

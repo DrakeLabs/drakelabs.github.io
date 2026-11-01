@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Service status" description="Check DrakeLabs service availability, uptime history, maintenance, and incident updates on our independently hosted status page.">
+  <section class="page-intro">
+    <p class="eyebrow">DRAKELABS / SERVICE STATUS</p>
+    <h1>Check before<br />you <em>press play.</em></h1>
+    <p class="lead">Having trouble opening Jellyfin or making a request? Our public status page shows the latest availability checks and service history.</p>
+    <div class="actions"><a class="button" href="https://status.drakelabs.org/">View live service status ↗</a></div>
+  </section>
+  <section class="section two-col">
+    <div><p class="eyebrow">WHAT IS CHECKED</p><h2>Jellyfin and Media Requests.</h2><p>Better Stack checks whether the public service addresses respond. Visit the status page for current results, check times, and recorded incidents.</p><p>A successful availability check does not guarantee that every video plays or every media request completes.</p></div>
+    <div><p class="eyebrow">HOSTED INDEPENDENTLY</p><h2>Status stays within reach.</h2><p>The status page is hosted outside the home environment so you can still check for updates when the media server or home connection is unavailable.</p><p>Availability checks show when a public service is unreachable; they do not identify the cause by themselves.</p></div>
+  </section>
+</Layout>

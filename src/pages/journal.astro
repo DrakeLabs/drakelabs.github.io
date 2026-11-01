@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+const milestones = [
+  [
+    "Early 2024",
+    "Learning Linux from scratch",
+    "An old Mac mini becomes my starting point. I learn Ubuntu, drive mounts, permissions, text-file editing, and how to make scripts executable. At one point I corrupt the OS, reinstall, and start over. It is a practical introduction to Linux, with plenty of mistakes along the way.",
+    "Approximate"
+  ],
+  [
+    "May 2024",
+    "The library comes online",
+    "Jellyfin is running directly on Ubuntu as a bare-metal install. I start collecting our media, ripping discs and exploring sources including the Internet Archive and torrent sites for things my family and I want to watch.",
+    ""
+  ],
+  [
+    "June 2024",
+    "The first remote connections",
+    "Tailscale’s free offering and individual-machine sharing let family and friends connect from outside home. I write connection instructions, but everyone now has another app, account, and VPN connection to manage. It works, while introducing a usability challenge I will return to later.",
+    ""
+  ],
+  [
+    "Along the way",
+    "A more familiar viewing experience",
+    "I explore plugins for skipping intros and outros, plus collections for grouping related movies and series. Clear names and folders help metadata providers find the right artwork and cast information. As I refine the process, unidentified or incorrectly matched media becomes rare.",
+    "Undated milestone"
+  ],
+  [
+    "2024–2025",
+    "Troubleshooting becomes a skill",
+    "Playback issues teach me about codecs and hardware acceleration. Updates, permissions, and a host that goes to sleep send me into logs and the command line. I learn to verify that a service actually works for a viewer, not just that its process is running.",
+    ""
+  ],
+  [
+    "2024–2025",
+    "Dashboards and notifications",
+    "I begin exploring Grafana, Prometheus, and Node Exporter to understand what the machines are doing. Node Exporter exposes host metrics, Prometheus collects them, and Grafana turns them into dashboards. Discord webhooks bring notifications into a place I already check.",
+    "Approximate"
+  ],
+  [
+    "By February 2025",
+    "A simpler address for the family",
+    "I make an exception to the spending rule and buy a domain, working toward access without a separate VPN app. Cloudflare Tunnel is in use by February. Domains, DNS, HTTPS, and public access bring new learning—and questions about security and responsibility.",
+    "In use by then; purchase date uncertain"
+  ],
+  [
+    "2025",
+    "More storage, more people",
+    "Most of the year runs smoothly. I reorganize storage and add a four-bay USB 3.0 drive dock as more aunts, uncles, and friends join. Requests arrive by text and phone. A flimsy backup-drive cable exposes a quieter failure: when the drive disconnects, the script writes to the internal disk instead of creating the separate copy I expected.",
+    ""
+  ],
+  [
+    "Along the way",
+    "My first containers",
+    "Docker is a major milestone. I learn to define services in Compose YAML files, inspect running containers with docker ps, and start them with docker compose up -d. I am still learning, but can now create and troubleshoot containers for the services I use.",
+    "Undated milestone"
+  ],
+  [
+    "2025–2026",
+    "Supporting services and live TV",
+    "Supporting applications gain a home on a separate machine. Threadfin and Cabernet introduce more work with IPTV sources, playlists, guide data, and playback compatibility. These experiments develop in stages; the live-sports coverage I want remains unresolved.",
+    "Estimated period"
+  ],
+  [
+    "September 2026",
+    "The network gets an upgrade",
+    "A Cisco CBS250 replaces older switches. The wider environment now involves routing, VLANs, DNS, and wireless access—more of the network becoming part of the project. The switch replacement belongs to this month; the other pieces developed over time.",
+    ""
+  ],
+  [
+    "October 2026",
+    "Writing down the work",
+    "I bring the project history and operating notes together so my future self, or another person, can follow the reasoning. I also explore whether an AI agent could inspect logs and metrics directly. At this point in the chronicle, that operating model is a proposal, beginning with restricted inspection and review before changes.",
+    ""
+  ],
+  [
+    "October 2026",
+    "Requests become self-service",
+    "The Seerr and Arr requests page gives family and friends a way to ask for movies and shows without calling or texting me. They can now use Jellyfin remotely through the app or public URL without a VPN, with Jellyfin and Finamp providing music options.",
+    "Current-state snapshot, not exact rollout dates"
+  ],
+  [
+    "October 2026",
+    "DrakeLabs gets a website",
+    "ChatGPT and Codex build this Astro portfolio from my ideas, content, feedback, and review. With very limited web-development experience of my own, I can bring the story together while AI handles the implementation.",
+    ""
+  ]
+];
+---
+<Layout title="Journal">
+  <section class="page-intro"><p class="eyebrow">03 / FIELD NOTES</p><h1>Write down<br /><em>the why.</em></h1><p class="lead">How a family media project grew into DrakeLabs: the decisions, mistakes, and lessons along the way.</p></section>
+  <section class="section" id="timeline" aria-labelledby="timeline-heading">
+    <div class="section-heading"><div><p class="eyebrow">THE BUILD, OVER TIME</p><h2 id="timeline-heading">One problem at a time.</h2></div><span class="tag">Living history</span></div>
+    <p class="timeline-intro">Drawn from my recollections and the DrakeLabs Chronicle. Dates use months and years where known; estimates are marked, and “Along the way” entries capture milestones without a fixed date.</p>
+    <ol class="timeline">{milestones.map(([date, title, detail, note]) => <li><div class="timeline-date">{date}{note && <span>{note}</span>}</div><div><h3>{title}</h3><p>{detail}</p></div></li>)}</ol>
+  </section>
+  <section class="section two-col" id="community"><div><p class="eyebrow">THE COMMUNITY TODAY</p><h2>A wider family circle.</h2><p>Around 30 family members and friends now have accounts, with usually five to ten actively watching at a time. These are my approximate observations as of October 2026, rather than measured usage statistics.</p></div><div><p>The best measure of progress is what people can do themselves: connect, browse, listen, and request something without every step becoming a support call. Live sports is still a gap.</p><a class="text-link" href={`${base}projects/family-media/#results`}>Read the current results and remaining challenges →</a></div></section>
+  <article class="journal-entry" id="designing-for-family"><div><span class="tag">Reflection</span><p class="eyebrow">ACCESS &amp; USABILITY</p></div><div><h2>Design for the person pressing play.</h2><p>Jellyfin’s broad client support was part of my choice, but mostly standardizing the family on Fire TV Sticks gave me a more predictable setup to support. The other half of that experience was getting connected.</p><p>When my mom or in-laws needed to reopen Tailscale or sign in again, it looked like Jellyfin had stopped working. A fix that was obvious to me was another hurdle for them. That helped drive the decision to spend money on a domain and pursue a simpler route in.</p><p>Those choices taught me to include the app, account, and connection steps in the design—not just the server.</p><a class="text-link" href={`${base}projects/family-media/`}>Read the full family-media case study →</a></div></article>
+  <article class="journal-entry" id="ai-in-the-process"><div><span class="tag">Process</span><p class="eyebrow">MY WORK &amp; AI’S ROLE</p></div><div><h2>Give the work accurate credit.</h2><p>In the earlier lab, AI helped with research and Bash or Python scripts. I manually reviewed that material and did the building and configuration myself.</p><p>Direct implementation by agents is a recent change. For this website, ChatGPT and Codex generate the code, styling, and layouts; I provide the story, goals, direction, and review. That is different from independently writing the front end, and I want the distinction to stay clear.</p><a class="text-link" href={`${base}projects/#website-process`}>How this website was built →</a></div></article>
+  <article class="journal-entry" id="a-home-for-the-lab"><div><span class="tag">Design note</span><p class="eyebrow">OCTOBER 2026</p></div><div><h2>Give the learning a home.</h2><p>A list of services tells you what exists. DrakeLabs is a place to explain why I chose them, what went wrong, and what I learned. Projects hold the case studies; Infrastructure brings together the practical lessons; this journal preserves how the work developed.</p><p>The static portfolio is hosted independently of the systems it describes, giving the documentation a home beyond the lab itself.</p><a class="text-link" href={`${base}projects/#on-the-horizon`}>What I want to explore next →</a></div></article>
+</Layout>

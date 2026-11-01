@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+import SeasonalTheme from '../components/SeasonalTheme.astro';
+const descriptions: Record<string, string> = {
+  Home: 'DrakeLabs: Zachary Drake’s projects, practical engineering lessons, and enterprise collaboration experience.',
+  Infrastructure: 'The goals, Linux skills, containers, media organization, and family experience behind DrakeLabs.',
+  Projects: 'Explore DrakeLabs builds, the family media case study, and future project ideas.',
+  Journal: 'The decisions, mistakes, and milestones behind a growing family media system.',
+  About: 'Why Zachary Drake started DrakeLabs and how a family project became a place to learn.',
+};
+const { title, description = descriptions[Astro.props.title] || 'DrakeLabs — projects, infrastructure, and lessons learned.' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const links = [['Home', ''], ['Infrastructure', 'infrastructure'], ['Projects', 'projects'], ['Journal', 'journal'], ['Professional', 'professional'], ['About', 'about']];
+const path = Astro.url.pathname.replace(/\/$/, '');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a1424" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <title>{title} · DrakeLabs</title>
+    <SeasonalTheme />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="header wrap">
+      <a class="brand" href={`${base}/`} aria-label="DrakeLabs home"><span class="mark">D<span> /</span></span> DrakeLabs<span class="brand-dot">.</span><span class="seasonal-pumpkin" aria-hidden="true">🎃</span><span class="seasonal-christmas" aria-hidden="true">🎄</span><span class="seasonal-new-year" aria-hidden="true">✨</span></a>
+      <nav aria-label="Main navigation">{links.map(([label, slug]) => <a href={`${base}/${slug ? `${slug}/` : ''}`} aria-current={(path === `${base}${slug ? `/${slug}` : ''}` || (slug && path.startsWith(`${base}/${slug}/`))) ? 'page' : undefined}>{label}</a>)}</nav>
+    </header>
+    <main id="main" class="wrap" tabindex="-1"><slot /></main>
+    <footer class="wrap"><a class="brand" href={`${base}/`}>DrakeLabs.</a><p>Built with curiosity. Documented with intention.</p><div class="footer-meta"><a class="footer-support" href="https://status.drakelabs.org/">Service status</a><a class="footer-support" href="https://github.com/DrakeLabs">GitHub</a>{Astro.url.pathname !== `${base}/professional/` && <a class="footer-support" href={`${base}/support/`}>Support DrakeLabs</a>}<label class="seasonal-setting" hidden><input id="seasonal-accents" type="checkbox" checked /> Seasonal accents</label><span>© 2026 Zachary Drake</span></div></footer>
+  </body>
+</html>
