@@ -19,18 +19,19 @@ const path = Astro.url.pathname.replace(/\/$/, '');
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0a1424" />
+    <meta name="theme-color" content="#eeeee7" />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <title>{title} · DrakeLabs</title>
     <SeasonalTheme />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-    <header class="header wrap">
-      <a class="brand" href={`${base}/`} aria-label="DrakeLabs home"><span class="mark">D<span> /</span></span> DrakeLabs<span class="brand-dot">.</span><span class="seasonal-pumpkin" aria-hidden="true">🎃</span><span class="seasonal-christmas" aria-hidden="true">🎄</span><span class="seasonal-new-year" aria-hidden="true">✨</span></a>
+    <header class="header masthead wrap shell">
+      <a class="brand identity" href={`${base}/`} aria-label="DrakeLabs home"><span class="mark">D<span> /</span></span> DrakeLabs<span class="brand-dot">.</span><span class="seasonal-pumpkin" aria-hidden="true">🎃</span><span class="seasonal-christmas" aria-hidden="true">🎄</span><span class="seasonal-new-year" aria-hidden="true">✨</span></a>
       <nav aria-label="Main navigation">{links.map(([label, slug]) => <a href={`${base}/${slug ? `${slug}/` : ''}`} aria-current={(path === `${base}${slug ? `/${slug}` : ''}` || (slug && path.startsWith(`${base}/${slug}/`))) ? 'page' : undefined}>{label}</a>)}</nav>
     </header>
-    <main id="main" class="wrap" tabindex="-1"><slot /></main>
-    <footer class="wrap"><a class="brand" href={`${base}/`}>DrakeLabs.</a><p>Built with curiosity. Documented with intention.</p><div class="footer-meta"><a class="footer-support" href="https://status.drakelabs.org/">Service status</a><a class="footer-support" href="https://github.com/DrakeLabs">GitHub</a>{Astro.url.pathname !== `${base}/professional/` && <a class="footer-support" href={`${base}/support/`}>Support DrakeLabs</a>}<label class="seasonal-setting" hidden><input id="seasonal-accents" type="checkbox" checked /> Seasonal accents</label><span>© 2026 Zachary Drake</span></div></footer>
+    <div class="document-strip wrap shell" aria-label="Page reference"><span>DL / {title === 'Home' ? 'SYSTEMS & EXPERIENCE' : title.toUpperCase()}</span><span>PERSONAL ENGINEERING · ZACHARY DRAKE</span><span>OPERATIONS / LEARNING / DOCUMENTATION</span></div>
+    <main id="main" class="wrap shell" tabindex="-1"><slot /></main>
+    <footer class="wrap shell"><a class="brand identity" href={`${base}/`}>DrakeLabs.</a><p>Built with curiosity.<br />Documented with intention.</p><div class="footer-meta"><a class="footer-support" href="https://status.drakelabs.org/">Service status</a><a class="footer-support" href="https://github.com/DrakeLabs">GitHub</a>{Astro.url.pathname !== `${base}/professional/` && <a class="footer-support" href={`${base}/support/`}>Support DrakeLabs</a>}<label class="seasonal-setting" hidden><input id="seasonal-accents" type="checkbox" checked /> Seasonal accents</label><span>© 2026 Zachary Drake</span></div></footer>
   </body>
 </html>

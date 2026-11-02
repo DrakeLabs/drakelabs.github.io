@@ -1,0 +1,14 @@
+---
+const { compact = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const technologies = [
+  { name: 'Cisco', file: 'cisco.svg', width: 40, height: 40, slug: 'cisco', detail: 'CUCM · Unity Connection · UCCE · CVP · Finesse · CUIC', href: 'https://www.cisco.com/' },
+  { name: 'Webex', file: 'webex.png', width: 144, height: 144, slug: 'webex', detail: 'Enterprise collaboration', href: 'https://www.webex.com/' },
+  { name: 'Calabrio', file: 'calabrio.png', width: 382, height: 80, slug: 'calabrio', detail: 'Call recording & platform migration', href: 'https://www.verint.com/calabrio/' },
+  { name: 'Intrado', file: 'intrado.svg', width: 252, height: 90, slug: 'intrado', detail: 'Emergency calling / E911', href: 'https://www.intrado.com/' },
+];
+---
+<div class:list={['technology-band', { 'technology-band-compact': compact }]}>
+  <p class="eyebrow">Platforms I’ve worked with</p>
+  <div class="technology-grid">{technologies.map(technology => <a class={`technology-tile technology-${technology.slug}`} href={technology.href} aria-label={`${technology.name} — ${technology.detail}`}><div class="technology-art"><img src={`${base}brands/${technology.file}`} alt={`${technology.name} logo`} width={technology.width} height={technology.height} loading="lazy" decoding="async" /></div>{technology.slug === 'webex' && <span class="technology-name">Webex</span>}{!compact && <p>{technology.detail}</p>}</a>)}</div>
+</div>

@@ -50,7 +50,7 @@ Themes follow the visitor’s local date each year:
 - Christmas: December 18–26.
 - New Year’s: December 27–January 8, inclusive.
 
-Other dates use navy/teal. The footer’s Seasonal accents checkbox remembers the visitor’s choice. The status route keeps its standard colors. No scheduler or annual deployment is required.
+Other dates use the service-manual palette: off-white, charcoal, forest green, and rust orange. The footer’s Seasonal accents checkbox remembers the visitor’s choice. The status route keeps its standard colors. No scheduler or annual deployment is required.
 
 Local preview overrides: `/?season=halloween`, `/?season=christmas`, `/?season=new-year`, and `/?season=default`. Overrides are disabled in production. Without JavaScript, the standard theme remains usable.
 
